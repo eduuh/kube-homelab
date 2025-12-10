@@ -1,127 +1,71 @@
-# Talos Kubernetes Cluster
+# 🏠 Production Home Lab
 
-This repository contains configuration files for a Talos Linux based Kubernetes cluster.
+Infrastructure as Code for a high-availability Kubernetes cluster running on [Talos Linux](https://www.talos.dev).
 
-## Prerequisites
+## 🌟 Overview
 
-- [talosctl](https://www.talos.dev/latest/learn-more/talosctl/)
-- [kubectl](https://kubernetes.io/docs/tasks/tools/)
+This repository manages the configuration and state of my home laboratory Kubernetes cluster. It follows GitOps principles and prioritizes security through encryption and immutable infrastructure.
 
-## Project Structure
+**Key Technologies:**
 
-- `cluster/controlplane.yaml`: Machine configuration for control plane nodes.
-- `cluster/worker.yaml`: Machine configuration for worker nodes.
-- `cluster/talosconfig`: Configuration for the `talosctl` CLI.
-- `cluster/kubeconfig`: Configuration for the `kubectl` CLI.
-- `export-kubeconfig.sh`: Helper script to set the KUBECONFIG environment variable.
+* **OS:** Talos Linux (Immutable, API-managed)
+* **Orchestration:** Kubernetes
+* **Secret Management:** SOPS + Age + 1Password
 
-## Usage
+## 📂 Repository Structure
 
-### Talos Dashboard
+* `cluster/`: Core cluster configuration (Control Plane, Workers, Kubeconfig). All sensitive files are encrypted.
+* `docs/`: Detailed operational documentation.
+* `export-kubeconfig.sh`: Helper script to decrypt and load the kubeconfig.
 
-Start by accessing the Talos dashboard:
+## 🚀 Getting Started
 
-```bash
-talosctl dashboard -n 10.0.0.24 -e 10.0.0.24 --talosconfig ./cluster/talosconfig
-```
+### Prerequisites
 
-### Accessing the Cluster (kubectl)
+Ensure you have the following tools installed:
 
-To interact with the cluster using `kubectl`, you can use the provided helper script to set your environment variable:
+* [talosctl](https://www.talos.dev/latest/learn-more/talosctl/)
+* [kubectl](https://kubernetes.io/docs/tasks/tools/)
+* [sops](https://github.com/getsops/sops)
+* [age](https://github.com/FiloSottile/age)
+* [1Password CLI](https://developer.1password.com/docs/cli/) (`op`)
 
-```bash
-source ./export-kubeconfig.sh
-```
+### 🔐 Secrets & Access
 
-Then you can run kubectl commands:
+This repository uses **SOPS** with **Age** encryption. The private key is stored securely in 1Password.
 
-```bash
-kubectl get nodes
-```
-
-### Adding a Worker Node
-
-To add a new worker node to the cluster, apply the `worker.yaml` configuration to the new node's IP address:
-
-```bash
-talosctl apply-config --insecure --nodes <NEW_WORKER_IP> --file <(sops -d cluster/worker.yaml)
-```
-
-### Removing a Node
-
-To remove a node from the cluster:
-
-1. Delete the node from Kubernetes:
+1. **Authenticate with 1Password:**
 
     ```bash
-    kubectl delete node <NODE_NAME>
+    eval $(op signin)
     ```
 
-2. Reset the node using `talosctl` (this will wipe the disk and reboot the node):
-
-    ```bash
-    talosctl reset --nodes <NODE_IP> --talosconfig cluster/talosconfig
-    ```
-
-## Security & Encryption
-
-We use [sops](https://github.com/getsops/sops) with [age](https://github.com/FiloSottile/age) to encrypt sensitive configuration files.
-
-### Encryption Prerequisites
-
-1. Install `age` and `sops`:
-
-    ```bash
-    brew install age sops
-    ```
-
-2. Generate a key:
-
-    ```bash
-    age-keygen -o keys.txt
-    ```
-
-3. Set the environment variable (add this to your shell profile):
-
-    ```bash
-    export SOPS_AGE_KEY_FILE=$(pwd)/keys.txt
-    ```
-
-4. **Important:** Update `.sops.yaml` with your public key (found in `keys.txt`). Replace `AGE-PUBLIC-KEY-HERE` with your actual public key.
-
-### Storing the Key in 1Password
-
-To securely manage the private key, you can store it in 1Password:
-
-1. Copy the content of `keys.txt`.
-2. Save it in a 1Password item (e.g., "Talos Age Key").
-3. Use the 1Password CLI (`op`) to set the variable:
+2. **Load the Decryption Key:**
 
     ```bash
     export SOPS_AGE_KEY=$(op read "op://Personal/Talos Age Key/notesPlain")
     ```
 
-### Encrypting Files
+3. **Access the Cluster:**
 
-To encrypt a file in place:
+    ```bash
+    source ./export-kubeconfig.sh
+    kubectl get nodes
+    ```
 
-```bash
-sops --encrypt --in-place cluster/controlplane.yaml
-sops --encrypt --in-place cluster/worker.yaml
-sops --encrypt --in-place cluster/talosconfig
-sops --encrypt --in-place cluster/kubeconfig
-```
+## 📚 Documentation
 
-### Using Encrypted Files
+* **[Security Guide](docs/security.md)**: Detailed setup for encryption keys and secret management.
+* **[Cluster Operations](docs/usage.md)**: How to access the dashboard, manage nodes, and perform maintenance.
 
-Since `talosctl` doesn't natively support sops, use process substitution to decrypt on the fly:
+## 🛠️ Maintenance
 
-```bash
-talosctl apply-config --insecure --nodes <NODE_IP> --file <(sops -d cluster/controlplane.yaml)
-```
-
-To edit an encrypted file:
+To apply changes to the cluster nodes:
 
 ```bash
-sops cluster/controlplane.yaml
+# Example: Apply configuration to a worker node
+talosctl apply-config --insecure --nodes <NODE_IP> --file <(sops -d cluster/worker.yaml)
 ```
+
+---
+Managed with ❤️ and Talos Linux
