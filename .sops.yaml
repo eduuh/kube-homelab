@@ -1,0 +1,11 @@
+creation_rules:
+  # Encrypt Talos machine configurations
+  # We use a regex to only encrypt sensitive values, keeping the structure readable.
+  - path_regex: (controlplane|worker)\.yaml$
+    encrypted_regex: '^(token|ca|crt|key|id|secret|password|bootstrapToken)$'
+    age: "age123qz4jtnncp3l87a722303xxvs7jf33melrt3m63kqp0r34304zsdfhlm4"
+
+  # Encrypt kubeconfig and talosconfig
+  # These are almost entirely sensitive, so we encrypt all values.
+  - path_regex: (talosconfig|kubeconfig)$
+    age: "age123qz4jtnncp3l87a722303xxvs7jf33melrt3m63kqp0r34304zsdfhlm4"
