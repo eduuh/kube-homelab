@@ -1,0 +1,18 @@
+# Optional: Custom DNS entries for CoreDNS
+# Apply this if you need custom internal DNS resolution
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coredns-custom
+  namespace: kube-system
+data:
+  custom.server: |
+    eduuh.home:53 {
+        errors
+        cache 30
+        forward . 192.168.1.1  # Your upstream DNS server
+        reload
+    }
+  hosts.override: |
+    # Add static entries if needed
+    # 192.168.1.100 it-tools.eduuh.home

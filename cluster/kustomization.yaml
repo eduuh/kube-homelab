@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- networking/cert-manager.yaml
+- networking/external-dns.yaml
+- networking/ingress-nginx.yaml
+- networking/ingress-nginx-namespace.yaml
+- networking/issuers.yaml
+- networking/pihole-secret.yaml
+- networking/local-dns-config.yaml
+- networking/etcd.yaml
+- networking/metallb.yaml
+- networking/metallb-config.yaml
+- networking/coredns-configmap.yaml
+- networking/coredns-service.yaml
+- apps/it-tools.yaml
+- apps/podinfo.yaml
+- apps/podinfo-secret.yaml
