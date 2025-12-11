@@ -9,6 +9,7 @@ resources:
 - networking/pihole-secret.yaml
 - networking/local-dns-config.yaml
 - networking/etcd.yaml
+- networking/metallb-namespace.yaml
 - networking/metallb.yaml
 - networking/metallb-config.yaml
 - networking/coredns-configmap.yaml

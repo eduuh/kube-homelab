@@ -14,22 +14,48 @@ This cluster uses multiple methods for DNS resolution:
 
 ## Setup Requirements
 
-### 1. Local DNS Server (Pi-hole, AdGuard Home, etc.)
-Add A records pointing to your Ingress Controller's IP:
-```
-it-tools.eduuh.home -> <INGRESS_CONTROLLER_IP>
+### 1. Configure Pi-hole (Conditional Forwarding)
+
+Instead of manually adding records for every service, we configure Pi-hole to forward all `*.eduuh.home` queries to our Kubernetes cluster's DNS server (MetalLB IP).
+
+#### Option A: SSH Access
+
+1. SSH into your Pi-hole.
+
+2. Create a configuration file to forward the domain to the Cluster DNS LoadBalancer IP (`10.0.0.53`):
+
+   ```bash
+   echo "server=/eduuh.home/10.0.0.53" | sudo tee /etc/dnsmasq.d/99-k8s-cluster.conf
+   ```
+
+3. Restart Pi-hole DNS:
+
+   ```bash
+   pihole restartdns
+   ```
+
+#### Option B: Docker
+
+If running Pi-hole in Docker:
+
+```bash
+docker exec -it pihole bash -c 'echo "server=/eduuh.home/10.0.0.53" > /etc/dnsmasq.d/99-k8s-cluster.conf'
+docker exec -it pihole pihole restartdns
 ```
 
-### 2. Find Ingress Controller IP
+### 2. Verify Configuration
+
+From your local machine (not the Pi-hole), test that the domain resolves:
+
 ```bash
-kubectl get svc -n ingress-nginx ingress-nginx-controller
+dig @<PIHOLE_IP> it-tools.eduuh.home
 ```
+
+It should return an answer (e.g., `10.0.0.24` or your Ingress LoadBalancer IP).
 
 ### 3. Client Configuration
-Configure your local machines to use your DNS server or add entries to `/etc/hosts`:
-```
-<INGRESS_IP> it-tools.eduuh.home
-```
+
+Ensure your local machines are using your Pi-hole as their DNS server. No local `/etc/hosts` entries are needed!
 
 ## Adding New Services with DNS
 
