@@ -34,5 +34,29 @@ spec:
   ports:
   - port: 80
     targetPort: 80
-    nodePort: 30080
-  type: NodePort
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: it-tools
+  namespace: it-tools
+  annotations:
+    cert-manager.io/cluster-issuer: self-signed
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - it-tools.eduuh.home
+    secretName: it-tools-tls
+  rules:
+  - host: it-tools.eduuh.home
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: it-tools
+            port:
+              number: 80
