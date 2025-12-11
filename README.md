@@ -14,9 +14,24 @@ This repository manages the configuration and state of my home laboratory Kubern
 
 ## 📂 Repository Structure
 
-* `cluster/`: Core cluster configuration (Control Plane, Workers, Kubeconfig). All sensitive files are encrypted.
+* `provisioning/`: Talos machine configuration (Control Plane, Workers, Kubeconfig). These files are used to bootstrap the nodes.
+* `cluster/`: Kubernetes manifests managed by Flux. This is the source of truth for the cluster state.
 * `docs/`: Detailed operational documentation.
 * `export-kubeconfig.sh`: Helper script to decrypt and load the kubeconfig.
+
+## 🔄 GitOps & Flux
+
+This cluster uses [Flux](https://fluxcd.io) for GitOps.
+
+* **Sync:** Flux watches the `cluster/` directory and automatically applies changes to the cluster.
+* **Encryption:** Secrets in the `cluster/` directory are encrypted with SOPS. Flux is configured with the Age key to decrypt them automatically.
+
+### Verification (Podinfo)
+
+A `podinfo` deployment is included in `cluster/podinfo.yaml` to verify the GitOps pipeline.
+
+* **Deployment:** Verifies that Flux can sync and apply standard manifests.
+* **Secret:** `cluster/podinfo-secret.yaml` contains an encrypted secret. This verifies that Flux's SOPS integration is working correctly (i.e., it can decrypt secrets before applying them).
 
 ## 🚀 Getting Started
 
