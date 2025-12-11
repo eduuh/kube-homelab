@@ -27,13 +27,13 @@ if [ -z "$SOPS_AGE_KEY" ] && [ -z "$SOPS_AGE_KEY_FILE" ]; then
 fi
 
 # Decrypt kubeconfig to a temporary file
-if [ ! -f "$(pwd)/cluster/kubeconfig" ]; then
-    echo "Error: $(pwd)/cluster/kubeconfig not found."
+if [ ! -f "$(pwd)/provisioning/kubeconfig" ]; then
+    echo "Error: $(pwd)/provisioning/kubeconfig not found."
     return 1
 fi
 
 TEMP_KUBECONFIG=$(mktemp)
-if ! sops -d "$(pwd)/cluster/kubeconfig" > "$TEMP_KUBECONFIG"; then
+if ! sops -d "$(pwd)/provisioning/kubeconfig" > "$TEMP_KUBECONFIG"; then
     echo "Error: Failed to decrypt kubeconfig."
     rm -f "$TEMP_KUBECONFIG"
     return 1
