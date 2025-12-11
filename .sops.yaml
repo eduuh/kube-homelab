@@ -9,3 +9,8 @@ creation_rules:
   # These are almost entirely sensitive, so we encrypt all values.
   - path_regex: (talosconfig|kubeconfig)$
     age: "age123qz4jtnncp3l87a722303xxvs7jf33melrt3m63kqp0r34304zsdfhlm4"
+
+  # Encrypt Kubernetes Secrets in cluster directory
+  - path_regex: cluster/.*\.yaml$
+    encrypted_regex: '^(data|stringData)$'
+    age: "age123qz4jtnncp3l87a722303xxvs7jf33melrt3m63kqp0r34304zsdfhlm4"
