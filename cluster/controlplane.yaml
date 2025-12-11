@@ -343,6 +343,7 @@ machine:
         #     exampleTaint: exampleTaintValue:NoSchedule
 # Provides cluster specific configuration options.
 cluster:
+    allowSchedulingOnControlPlanes: true
     # Globally unique identifier for this cluster (base64 encoded random 32 bytes).
     id: ENC[AES256_GCM,data:FVy2r6V/clsl9pVvoTXnQhG86LPAZLvsGweMQmrlL0WO593a3EgXNbXYo9M=,iv:He90YK4xika+I/efSYzMTpBDSZHp32oVOWlsROydz4Q=,tag:WQ5n43ZY/KBvgzy4wk4ZPg==,type:str]
     # Shared secret of cluster (base64 encoded random 32 bytes).
