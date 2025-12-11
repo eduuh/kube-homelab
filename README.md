@@ -17,7 +17,7 @@ This repository manages the configuration and state of my home laboratory Kubern
 * **Kubernetes:** `v1.34.1`
 * **Talos Linux:** `v1.11.5`
 * **Nodes:** 3 (1 Control Plane, 2 Workers)
-* **Resources:** 24 CPU Cores, ~35GB RAM, ~753GB Storage
+* **Resources:** 24 CPU Cores, ~35GB RAM, ~1.35TB Storage
 * **Networking:** Flannel CNI, Default Pod/Service CIDRs
 
 ## 📂 Repository Structure
