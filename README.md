@@ -12,6 +12,14 @@ This repository manages the configuration and state of my home laboratory Kubern
 * **Orchestration:** Kubernetes
 * **Secret Management:** SOPS + Age + 1Password
 
+## 📊 Cluster Status
+
+* **Kubernetes:** `v1.34.1`
+* **Talos Linux:** `v1.11.5`
+* **Nodes:** 3 (1 Control Plane, 2 Workers)
+* **Resources:** 24 CPU Cores, ~35GB RAM
+* **Networking:** Flannel CNI, Default Pod/Service CIDRs
+
 ## 📂 Repository Structure
 
 * `provisioning/`: Talos machine configuration (Control Plane, Workers, Kubeconfig). These files are used to bootstrap the nodes.
