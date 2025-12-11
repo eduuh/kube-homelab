@@ -1,4 +1,0 @@
-controlplane.yaml
-worker.yaml
-talosconfig
-kubeconfig
