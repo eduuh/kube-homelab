@@ -39,6 +39,10 @@ spec:
         kubernetes.io/hostname: talos-nst-2ck
     prometheus:
       prometheusSpec:
+        securityContext:
+          fsGroup: 2000
+          runAsNonRoot: true
+          runAsUser: 1000
         storageSpec:
           volumeClaimTemplate:
             spec:
@@ -51,6 +55,10 @@ spec:
           kubernetes.io/hostname: talos-nst-2ck
     alertmanager:
       alertmanagerSpec:
+        securityContext:
+          fsGroup: 2000
+          runAsNonRoot: true
+          runAsUser: 1000
         storage:
           volumeClaimTemplate:
             spec:
