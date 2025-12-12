@@ -41,6 +41,10 @@ spec:
             secretKeyRef:
               name: pihole-secret
               key: WEBPASSWORD
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "pihole setpassword $WEBPASSWORD"]
         ports:
         - containerPort: 53
           name: dns
