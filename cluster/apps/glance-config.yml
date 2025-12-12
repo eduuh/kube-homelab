@@ -54,3 +54,7 @@ pages:
                 url: https://n8n.eduuh.home
                 icon: si:n8n
                 allow-insecure: true
+              - title: Grafana
+                url: https://grafana.eduuh.home
+                icon: si:grafana
+                allow-insecure: true

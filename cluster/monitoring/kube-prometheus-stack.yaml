@@ -1,0 +1,63 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: monitoring
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      version: "66.x"
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: flux-system
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
+  values:
+    grafana:
+      adminPassword: "changeit"
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: ca-issuer
+        hosts:
+          - grafana.eduuh.home
+        tls:
+          - secretName: grafana-tls
+            hosts:
+              - grafana.eduuh.home
+      persistence:
+        enabled: true
+        storageClassName: local-path
+        size: 10Gi
+      nodeSelector:
+        kubernetes.io/hostname: talos-nst-2ck
+    prometheus:
+      prometheusSpec:
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: local-path
+              accessModes: ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage: 50Gi
+        nodeSelector:
+          kubernetes.io/hostname: talos-nst-2ck
+    alertmanager:
+      alertmanagerSpec:
+        storage:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: local-path
+              accessModes: ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage: 10Gi
+        nodeSelector:
+          kubernetes.io/hostname: talos-nst-2ck

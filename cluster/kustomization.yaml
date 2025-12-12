@@ -25,6 +25,10 @@ resources:
 - apps/postgres.yaml
 - apps/n8n.yaml
 
+- monitoring/namespace.yaml
+- monitoring/source.yaml
+- monitoring/kube-prometheus-stack.yaml
+
 configMapGenerator:
   - name: glance-config
     namespace: glance
