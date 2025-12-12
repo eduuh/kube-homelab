@@ -12,30 +12,6 @@ data:
   99-k8s-cluster.conf: |
     server=/eduuh.home/10.0.0.53
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: pihole-etc
-  namespace: pihole-system
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: pihole-dnsmasq
-  namespace: pihole-system
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -85,11 +61,9 @@ spec:
           subPath: 99-k8s-cluster.conf
       volumes:
       - name: pihole-etc
-        persistentVolumeClaim:
-          claimName: pihole-etc
+        emptyDir: {}
       - name: pihole-dnsmasq
-        persistentVolumeClaim:
-          claimName: pihole-dnsmasq
+        emptyDir: {}
       - name: custom-dns
         configMap:
           name: pihole-custom-dns
