@@ -32,8 +32,12 @@ This repository manages a high-availability Kubernetes cluster running on Talos 
 
 2.  **Flux Workflows**:
     *   When adding new resources, place them in `cluster/`.
+    *   Changes are applied automatically after a commit.
     *   Trigger a reconciliation with `flux reconcile source git flux-system` after pushing changes to speed up sync.
 
 3.  **Talos Operations**:
     *   Use `talosctl` for node-level operations (upgrades, config patches).
     *   Do not SSH into nodes (Talos is immutable and has no shell).
+
+4.  **Application Dashboard**:
+    *   When adding new applications, update `cluster/apps/glance.yaml` to include the new service in the dashboard.

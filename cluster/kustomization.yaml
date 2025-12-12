@@ -19,5 +19,6 @@ resources:
 - flux-system/gotk-components.yaml
 - flux-system/gotk-sync.yaml
 - apps/it-tools.yaml
+- apps/glance.yaml
 
 
