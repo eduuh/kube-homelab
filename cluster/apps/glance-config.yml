@@ -1,32 +1,6 @@
 theme:
   light: false
 pages:
-  - name: Home
-    columns:
-      - size: small
-        widgets:
-          - type: clock
-            hour-format: 24h
-          - type: weather
-            location: Nairobi, Kenya
-      - size: full
-        widgets:
-          - type: videos
-            title: YouTube
-            style: horizontal-cards
-            limit: 4
-            channels:
-              - UCXuqSBlHAE6Xw-yeJA0Tunw # Linus Tech Tips
-              - UCBJycsmduvYEL83R_U4JriQ # Marques Brownlee
-          - type: rss
-            title: Blogs
-            style: horizontal-cards
-            limit: 4
-            feeds:
-              - url: https://kubernetes.io/feed.xml
-                title: Kubernetes Blog
-              - url: https://www.jeffgeerling.com/blog.xml
-                title: Jeff Geerling
   - name: Homelab
     columns:
       - size: small
@@ -62,3 +36,178 @@ pages:
                 url: https://syncthing.eduuh.home
                 icon: si:syncthing
                 allow-insecure: true
+  - name: Markets
+    columns:
+      - size: small
+        widgets:
+          - type: markets
+            title: Indices
+            markets:
+              - symbol: SPY
+                name: S&P 500
+              - symbol: DX-Y.NYB
+                name: Dollar Index
+
+          - type: markets
+            title: Crypto
+            markets:
+              - symbol: BTC-USD
+                name: Bitcoin
+              - symbol: ETH-USD
+                name: Ethereum
+
+          - type: markets
+            title: Stocks
+            sort-by: absolute-change
+            markets:
+              - symbol: NVDA
+                name: NVIDIA
+              - symbol: AAPL
+                name: Apple
+              - symbol: MSFT
+                name: Microsoft
+              - symbol: GOOGL
+                name: Google
+              - symbol: AMD
+                name: AMD
+              - symbol: RDDT
+                name: Reddit
+              - symbol: AMZN
+                name: Amazon
+              - symbol: TSLA
+                name: Tesla
+              - symbol: INTC
+                name: Intel
+              - symbol: META
+                name: Meta
+
+      - size: full
+        widgets:
+          - type: rss
+            title: News
+            style: horizontal-cards
+            feeds:
+              - url: https://feeds.bloomberg.com/markets/news.rss
+                title: Bloomberg
+              - url: https://moxie.foxbusiness.com/google-publisher/markets.xml
+                title: Fox Business
+              - url: https://moxie.foxbusiness.com/google-publisher/technology.xml
+                title: Fox Business
+
+          - type: group
+            widgets:
+              - type: reddit
+                show-thumbnails: true
+                subreddit: technology
+              - type: reddit
+                show-thumbnails: true
+                subreddit: wallstreetbets
+
+          - type: videos
+            style: grid-cards
+            collapse-after-rows: 3
+            channels:
+              - UCvSXMi2LebwJEM1s4bz5IBA # New Money
+              - UCV6KDgJskWaEckne5aPA0aQ # Graham Stephan
+              - UCAzhpt9DmG6PnHXjmJTvRGQ # Federal Reserve
+
+      - size: small
+        widgets:
+          - type: rss
+            title: News
+            limit: 30
+            collapse-after: 13
+            feeds:
+              - url: https://www.ft.com/technology?format=rss
+                title: Financial Times
+              - url: https://feeds.a.dj.com/rss/RSSMarketsMain.xml
+                title: Wall Street Journal
+  - name: Home
+    # Optionally, if you only have a single page you can hide the desktop navigation for a cleaner look
+    # hide-desktop-navigation: true
+    columns:
+      - size: small
+        widgets:
+          - type: calendar
+            first-day-of-week: monday
+
+          - type: rss
+            limit: 10
+            collapse-after: 3
+            cache: 12h
+            feeds:
+              - url: https://selfh.st/rss/
+                title: selfh.st
+                limit: 4
+              - url: https://ciechanow.ski/atom.xml
+              - url: https://www.joshwcomeau.com/rss.xml
+                title: Josh Comeau
+              - url: https://samwho.dev/rss.xml
+              - url: https://ishadeed.com/feed.xml
+                title: Ahmad Shadeed
+
+          - type: twitch-channels
+            channels:
+              - theprimeagen
+              - j_blow
+              - giantwaffle
+              - cohhcarnage
+              - christitustech
+              - EJ_SA
+
+      - size: full
+        widgets:
+          - type: group
+            widgets:
+              - type: hacker-news
+              - type: lobsters
+
+          - type: videos
+            channels:
+              - UCXuqSBlHAE6Xw-yeJA0Tunw # Linus Tech Tips
+              - UCR-DXc1voovS8nhAvccRZhg # Jeff Geerling
+              - UCsBjURrPoezykLs9EqgamOA # Fireship
+              - UCBJycsmduvYEL83R_U4JriQ # Marques Brownlee
+              - UCHnyfMqiRRG1u-2MsSQLbXA # Veritasium
+
+          - type: group
+            widgets:
+              - type: reddit
+                subreddit: technology
+                show-thumbnails: true
+              - type: reddit
+                subreddit: selfhosted
+                show-thumbnails: true
+
+      - size: small
+        widgets:
+          - type: weather
+            location: London, United Kingdom
+            units: metric # alternatively "imperial"
+            hour-format: 12h # alternatively "24h"
+            # Optionally hide the location from being displayed in the widget
+            # hide-location: true
+
+          - type: markets
+            markets:
+              - symbol: SPY
+                name: S&P 500
+              - symbol: BTC-USD
+                name: Bitcoin
+              - symbol: NVDA
+                name: NVIDIA
+              - symbol: AAPL
+                name: Apple
+              - symbol: MSFT
+                name: Microsoft
+
+          - type: releases
+            cache: 1d
+            # Without authentication the Github API allows for up to 60 requests per hour. You can create a
+            # read-only token from your Github account settings and use it here to increase the limit.
+            # token: ...
+            repositories:
+              - glanceapp/glance
+              - go-gitea/gitea
+              - immich-app/immich
+              - syncthing/syncthing
