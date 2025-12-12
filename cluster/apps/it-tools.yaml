@@ -65,15 +65,15 @@ metadata:
   name: it-tools
   namespace: it-tools
   annotations:
-    cert-manager.io/cluster-issuer: ca-issuer
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - tools.eduuh.home
+    - tools.eduuh.com
     secretName: tools-tls
   rules:
-  - host: tools.eduuh.home
+  - host: tools.eduuh.com
     http:
       paths:
       - path: /
