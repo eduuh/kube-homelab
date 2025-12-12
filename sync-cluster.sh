@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+# Load kubeconfig and secrets
+source ./export-kubeconfig.sh
+
 # Colors
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
