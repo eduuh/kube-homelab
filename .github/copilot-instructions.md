@@ -41,3 +41,11 @@ This repository manages a high-availability Kubernetes cluster running on Talos 
 
 4.  **Application Dashboard**:
     *   When adding new applications, update `cluster/apps/glance.yaml` to include the new service in the dashboard.
+
+5.  **Storage Guidelines**:
+    *   **`local-path` Storage Class**: This maps to the 537GB HDD on `talos-nst-2ck`. It is suitable for:
+        *   Photo/video backup storage (copying/archiving large files).
+        *   Media libraries (Plex/Jellyfin originals) where access is mostly streaming.
+        *   Archives / cold storage (documents, installers, ISO, snapshots, exports).
+        *   Log/file dumps (where you write append-style and read occasionally).
+        *   Object storage backing store (MinIO) if your workload is mostly large objects (small-object-heavy workloads will feel slower).

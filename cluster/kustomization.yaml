@@ -18,6 +18,11 @@ resources:
 - networking/coredns-service.yaml
 - flux-system/gotk-components.yaml
 - flux-system/gotk-sync.yaml
+- storage/local-path-provisioner.yaml
+- storage/nfs-server.yaml
+- storage/nfs-provisioner.yaml
+
+
 - apps/it-tools.yaml
 - apps/glance.yaml
 
