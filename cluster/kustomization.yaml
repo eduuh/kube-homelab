@@ -24,4 +24,10 @@ resources:
 - apps/nextcloud.yaml
 - apps/postgres.yaml
 
+configMapGenerator:
+  - name: glance-config
+    namespace: glance
+    files:
+      - glance.yml=apps/glance-config.yml
+
 
