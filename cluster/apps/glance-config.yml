@@ -58,3 +58,7 @@ pages:
                 url: https://grafana.eduuh.home
                 icon: si:grafana
                 allow-insecure: true
+              - title: Syncthing
+                url: https://syncthing.eduuh.home
+                icon: si:syncthing
+                allow-insecure: true

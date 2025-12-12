@@ -24,6 +24,7 @@ resources:
 - apps/nextcloud.yaml
 - apps/postgres.yaml
 - apps/n8n.yaml
+- apps/syncthing.yaml
 
 - monitoring/namespace.yaml
 - monitoring/source.yaml

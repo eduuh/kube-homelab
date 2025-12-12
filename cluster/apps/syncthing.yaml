@@ -1,0 +1,152 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: syncthing
+  labels:
+    name: syncthing
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: syncthing-data
+  namespace: syncthing
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-path
+  resources:
+    requests:
+      storage: 100Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: syncthing
+  namespace: syncthing
+  labels:
+    app: syncthing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: syncthing
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: syncthing
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: talos-nst-2ck
+      containers:
+      - name: syncthing
+        image: syncthing/syncthing:latest
+        ports:
+        - containerPort: 8384
+          name: gui
+        - containerPort: 22000
+          name: transport
+          protocol: TCP
+        - containerPort: 22000
+          name: transport-udp
+          protocol: UDP
+        - containerPort: 21027
+          name: discovery
+          protocol: UDP
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        volumeMounts:
+        - name: syncthing-data
+          mountPath: /var/syncthing
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /rest/noauth/health
+            port: gui
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /rest/noauth/health
+            port: gui
+          initialDelaySeconds: 10
+          periodSeconds: 10
+      volumes:
+      - name: syncthing-data
+        persistentVolumeClaim:
+          claimName: syncthing-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: syncthing-gui
+  namespace: syncthing
+spec:
+  ports:
+  - port: 80
+    targetPort: gui
+    protocol: TCP
+    name: http
+  selector:
+    app: syncthing
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: syncthing-transport
+  namespace: syncthing
+  annotations:
+    metallb.universe.tf/allow-shared-ip: "syncthing"
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 22000
+    targetPort: transport
+    protocol: TCP
+    name: transport-tcp
+  - port: 22000
+    targetPort: transport-udp
+    protocol: UDP
+    name: transport-udp
+  - port: 21027
+    targetPort: discovery
+    protocol: UDP
+    name: discovery
+  selector:
+    app: syncthing
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: syncthing
+  namespace: syncthing
+  annotations:
+    cert-manager.io/cluster-issuer: ca-issuer
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - syncthing.eduuh.home
+    secretName: syncthing-tls
+  rules:
+  - host: syncthing.eduuh.home
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: syncthing-gui
+            port:
+              name: http
