@@ -71,6 +71,51 @@ Ensure your local machines are using your Pi-hole as their DNS server. No local 
 # Test external DNS
 nslookup it-tools.eduuh.home
 
+```bash
 # Test from within cluster
 kubectl run -it --rm debug --image=nicolaka/netshoot --restart=Never -- nslookup it-tools.it-tools.svc.cluster.local
+```
+
+## Secondary Pi-hole (In-Cluster)
+
+A secondary Pi-hole instance is deployed within the cluster for redundancy.
+
+*   **IP Address**: `10.0.0.54`
+*   **Dashboard**: `http://10.0.0.54/admin`
+*   **Ingress**: `https://pihole-k8s.eduuh.home`
+
+### Password Management
+
+The Pi-hole web interface password is managed via a Kubernetes Secret and applied on startup.
+
+1.  **Secret Storage**:
+    *   The password is stored in `cluster/networking/pihole-web-secret.yaml`.
+    *   This file is **encrypted with SOPS** before committing to git.
+    *   The plaintext password is also saved in **1Password** under "Pi-hole Secondary".
+
+2.  **Application**:
+    *   The `WEBPASSWORD` environment variable is injected into the pod from the secret.
+    *   A `postStart` lifecycle hook runs `pihole setpassword $WEBPASSWORD` to ensure the password is set correctly for Pi-hole v6+.
+
+### Rotating the Password
+
+To change the password:
+
+1.  Generate a new password (avoid special characters if possible):
+    ```bash
+    openssl rand -hex 12
+    ```
+2.  Update the secret file (decrypt, edit, encrypt):
+    ```bash
+    sops --decrypt cluster/networking/pihole-web-secret.yaml > temp.yaml
+    # Edit temp.yaml with new password
+    sops --encrypt temp.yaml > cluster/networking/pihole-web-secret.yaml
+    rm temp.yaml
+    ```
+3.  Commit and push changes.
+4.  Restart the deployment to apply:
+    ```bash
+    kubectl rollout restart deployment pihole -n pihole-system
+    ```
+5.  Update the entry in 1Password.
 ```
