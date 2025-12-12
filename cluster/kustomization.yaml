@@ -3,8 +3,8 @@ kind: Kustomization
 resources:
 - networking/cert-manager.yaml
 - networking/cert-manager-issuers.yaml
-- networking/cert-manager-letsencrypt.yaml
 - networking/external-dns.yaml
+
 
 
 - networking/ingress-nginx.yaml
