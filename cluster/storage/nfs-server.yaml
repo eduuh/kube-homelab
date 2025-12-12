@@ -24,11 +24,13 @@ spec:
         kubernetes.io/hostname: talos-nst-2ck
       containers:
       - name: nfs-server
-        image: itsthenetwork/nfs-server-alpine:12
+        image: janeczku/nfs-ganesha:latest
         securityContext:
           privileged: true
+          capabilities:
+            add: ["SYS_ADMIN", "DAC_READ_SEARCH"]
         env:
-          - name: SHARED_DIRECTORY
+          - name: EXPORT_PATH
             value: /exports
         ports:
           - name: nfs

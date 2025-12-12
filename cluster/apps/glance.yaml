@@ -48,6 +48,8 @@ data:
                 sites:
                   - title: IT Tools
                     url: https://tools.eduuh.home
+                  - title: Immich
+                    url: https://photos.eduuh.home
                     icon: mdi:tools
                     allow-insecure: true
                   - title: Glance

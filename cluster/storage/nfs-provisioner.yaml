@@ -17,7 +17,9 @@ spec:
   values:
     nfs:
       server: nfs.eduuh.home
-      path: /exports
+      path: /
+      mountOptions:
+        - vers=4
     storageClass:
       name: nfs-client
       defaultClass: false
