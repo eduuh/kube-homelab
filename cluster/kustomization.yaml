@@ -16,4 +16,6 @@ resources:
 - networking/coredns-service.yaml
 - flux-system/gotk-components.yaml
 - flux-system/gotk-sync.yaml
+- apps/it-tools.yaml
+
 
