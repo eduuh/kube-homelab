@@ -93,3 +93,29 @@ spec:
     targetPort: 80
     protocol: TCP
     name: web
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pihole
+  namespace: pihole-system
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    external-dns.alpha.kubernetes.io/target: 10.0.0.53
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: pihole-k8s.eduuh.home
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: pihole
+            port:
+              name: web
+  tls:
+  - hosts:
+    - pihole-k8s.eduuh.home
+    secretName: pihole-k8s-tls
