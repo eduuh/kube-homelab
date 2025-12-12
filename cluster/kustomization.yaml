@@ -23,5 +23,7 @@ resources:
 
 - apps/it-tools.yaml
 - apps/glance.yaml
+- apps/nextcloud.yaml
+- apps/postgres.yaml
 
 

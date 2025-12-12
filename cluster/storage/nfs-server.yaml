@@ -45,7 +45,7 @@ spec:
       volumes:
         - name: data
           hostPath:
-            path: /var/mnt/storage
+            path: /var/nfs-storage
 ---
 apiVersion: v1
 kind: Service

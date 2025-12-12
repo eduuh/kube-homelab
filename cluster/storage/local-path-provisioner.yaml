@@ -94,6 +94,7 @@ provisioner: rancher.io/local-path
 volumeBindingMode: WaitForFirstConsumer
 reclaimPolicy: Delete
 
+
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -106,7 +107,7 @@ data:
             "nodePathMap":[
             {
                     "node":"DEFAULT_PATH_FOR_NON_LISTED_NODES",
-                    "paths":["/var/mnt/storage"]
+                    "paths":["/var/local-path-provisioner"]
             }
             ]
     }
