@@ -5,7 +5,6 @@ resources:
 - networking/external-dns.yaml
 - networking/ingress-nginx.yaml
 - networking/ingress-nginx-namespace.yaml
-# - networking/issuers.yaml
 - networking/local-dns-config.yaml
 - networking/etcd.yaml
 - networking/metallb-namespace.yaml

@@ -22,7 +22,7 @@ Instead of manually adding records for every service, we configure Pi-hole to fo
 
 1. SSH into your Pi-hole.
 
-2. Copy the configuration file `cluster/99-k8s-cluster.conf` to `/etc/dnsmasq.d/`:
+2. Copy the configuration file `docs/99-k8s-cluster.conf` to `/etc/dnsmasq.d/`:
 
    ```bash
    sudo cp 99-k8s-cluster.conf /etc/dnsmasq.d/
