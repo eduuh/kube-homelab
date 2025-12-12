@@ -61,6 +61,8 @@ spec:
       labels:
         app: local-path-provisioner
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: talos-nst-2ck
       serviceAccountName: local-path-provisioner-service-account
       containers:
         - name: local-path-provisioner

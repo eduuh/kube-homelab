@@ -30,6 +30,8 @@ spec:
     crds: CreateReplace
   values:
     controller:
+      nodeSelector:
+        kubernetes.io/hostname: talos-nst-2ck
       service:
         type: LoadBalancer
         externalTrafficPolicy: Local

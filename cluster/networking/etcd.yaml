@@ -48,6 +48,8 @@ spec:
       labels:
         app: etcd
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: talos-nst-2ck
       containers:
       - name: etcd
         image: registry.k8s.io/etcd:3.5.6-0

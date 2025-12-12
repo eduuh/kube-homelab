@@ -28,3 +28,10 @@ spec:
     crds: CreateReplace
   upgrade:
     crds: CreateReplace
+  values:
+    controller:
+      nodeSelector:
+        kubernetes.io/hostname: talos-nst-2ck
+    speaker:
+      nodeSelector:
+        kubernetes.io/hostname: talos-nst-2ck
