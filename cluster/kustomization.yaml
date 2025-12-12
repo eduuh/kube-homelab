@@ -23,6 +23,7 @@ resources:
 - apps/glance.yaml
 - apps/nextcloud.yaml
 - apps/postgres.yaml
+- apps/n8n.yaml
 
 configMapGenerator:
   - name: glance-config
