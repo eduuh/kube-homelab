@@ -22,6 +22,8 @@ spec:
       labels:
         app: glance
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: talos-nst-2ck
       containers:
         - name: glance
           image: glanceapp/glance:v0.8.4

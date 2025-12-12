@@ -22,6 +22,8 @@ spec:
       labels:
         app: it-tools
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: talos-nst-2ck
       containers:
       - name: it-tools
         image: corentinth/it-tools:latest
