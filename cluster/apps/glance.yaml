@@ -41,7 +41,15 @@ data:
                     title: Kubernetes Blog
                   - url: https://www.jeffgeerling.com/blog.xml
                     title: Jeff Geerling
+      - name: Homelab
+        columns:
           - size: small
+            widgets:
+              - type: clock
+                hour-format: 24h
+              - type: weather
+                location: Nairobi, Kenya
+          - size: full
             widgets:
               - type: monitor
                 title: Status
