@@ -10,7 +10,7 @@ This cluster uses multiple methods for DNS resolution:
 
 | Service | Internal DNS | External DNS |
 |---------|--------------|--------------|
-| IT Tools | it-tools.it-tools.svc.cluster.local | it-tools.eduuh.home |
+
 
 ## Setup Requirements
 

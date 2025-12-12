@@ -5,8 +5,8 @@ resources:
 - networking/external-dns.yaml
 - networking/ingress-nginx.yaml
 - networking/ingress-nginx-namespace.yaml
-- networking/local-dns-config.yaml
 - networking/etcd.yaml
+
 - networking/metallb-namespace.yaml
 - networking/metallb.yaml
 - networking/metallb-config.yaml
@@ -14,6 +14,4 @@ resources:
 - networking/coredns-service.yaml
 - flux-system/gotk-components.yaml
 - flux-system/gotk-sync.yaml
-- apps/it-tools.yaml
-- apps/podinfo.yaml
-- apps/podinfo-secret.yaml
+
