@@ -1,0 +1,121 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pihole-system
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pihole-custom-dns
+  namespace: pihole-system
+data:
+  99-k8s-cluster.conf: |
+    server=/eduuh.home/10.0.0.53
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pihole-etc
+  namespace: pihole-system
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pihole-dnsmasq
+  namespace: pihole-system
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pihole
+  namespace: pihole-system
+  labels:
+    app: pihole
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pihole
+  template:
+    metadata:
+      labels:
+        app: pihole
+    spec:
+      containers:
+      - name: pihole
+        image: pihole/pihole:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: TZ
+          value: "UTC"
+        - name: WEBPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pihole-secret
+              key: WEBPASSWORD
+        ports:
+        - containerPort: 53
+          name: dns
+          protocol: UDP
+        - containerPort: 53
+          name: dns-tcp
+          protocol: TCP
+        - containerPort: 80
+          name: web
+          protocol: TCP
+        volumeMounts:
+        - name: pihole-etc
+          mountPath: /etc/pihole
+        - name: pihole-dnsmasq
+          mountPath: /etc/dnsmasq.d
+        - name: custom-dns
+          mountPath: /etc/dnsmasq.d/99-k8s-cluster.conf
+          subPath: 99-k8s-cluster.conf
+      volumes:
+      - name: pihole-etc
+        persistentVolumeClaim:
+          claimName: pihole-etc
+      - name: pihole-dnsmasq
+        persistentVolumeClaim:
+          claimName: pihole-dnsmasq
+      - name: custom-dns
+        configMap:
+          name: pihole-custom-dns
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pihole
+  namespace: pihole-system
+  annotations:
+    metallb.io/allow-shared-ip: "pihole-svc"
+spec:
+  selector:
+    app: pihole
+  type: LoadBalancer
+  loadBalancerIP: 10.0.0.54
+  ports:
+  - port: 53
+    targetPort: 53
+    protocol: UDP
+    name: dns
+  - port: 53
+    targetPort: 53
+    protocol: TCP
+    name: dns-tcp
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: web
