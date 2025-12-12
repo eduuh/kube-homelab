@@ -16,7 +16,7 @@ spec:
       interval: 1m
   values:
     nfs:
-      server: nfs-server.storage.svc.cluster.local
+      server: nfs.eduuh.home
       path: /exports
     storageClass:
       name: nfs-client
