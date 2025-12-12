@@ -6,9 +6,6 @@ resources:
 - networking/ingress-nginx.yaml
 - networking/ingress-nginx-namespace.yaml
 # - networking/issuers.yaml
-- networking/pihole-secret.yaml
-- networking/pihole-web-secret.yaml
-- networking/pihole.yaml
 - networking/local-dns-config.yaml
 - networking/etcd.yaml
 - networking/metallb-namespace.yaml
