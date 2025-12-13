@@ -52,7 +52,7 @@ spec:
         app: jellyfin
     spec:
       nodeSelector:
-        kubernetes.io/hostname: talos-nst-2ck
+        kubernetes.io/hostname: talos-o1t-vd9
       containers:
       - name: jellyfin
         image: jellyfin/jellyfin:latest
@@ -152,7 +152,7 @@ spec:
         app: plex
     spec:
       nodeSelector:
-        kubernetes.io/hostname: talos-nst-2ck
+        kubernetes.io/hostname: talos-o1t-vd9
       containers:
       - name: plex
         image: linuxserver/plex:latest
@@ -255,7 +255,7 @@ spec:
         app: overseerr
     spec:
       nodeSelector:
-        kubernetes.io/hostname: talos-nst-2ck
+        kubernetes.io/hostname: talos-o1t-vd9
       containers:
       - name: overseerr
         image: sctx/overseerr:latest
@@ -350,7 +350,7 @@ spec:
         app: radarr
     spec:
       nodeSelector:
-        kubernetes.io/hostname: talos-nst-2ck
+        kubernetes.io/hostname: talos-o1t-vd9
       containers:
       - name: radarr
         image: linuxserver/radarr:latest
@@ -450,7 +450,7 @@ spec:
         app: qbittorrent
     spec:
       nodeSelector:
-        kubernetes.io/hostname: talos-nst-2ck
+        kubernetes.io/hostname: talos-o1t-vd9
       containers:
       - name: qbittorrent
         image: linuxserver/qbittorrent:latest
