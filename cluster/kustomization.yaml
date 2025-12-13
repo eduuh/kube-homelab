@@ -25,6 +25,8 @@ resources:
 - apps/postgres.yaml
 - apps/n8n.yaml
 - apps/syncthing.yaml
+- apps/media.yaml
+- apps/docmost.yaml
 
 - monitoring/namespace.yaml
 - monitoring/source.yaml

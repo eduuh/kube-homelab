@@ -1,0 +1,426 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: docmost
+    labels:
+        name: docmost
+sops:
+    age:
+        - recipient: age123qz4jtnncp3l87a722303xxvs7jf33melrt3m63kqp0r34304zsdfhlm4
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBwNHhzSm0vZEFQMXdsZS9E
+            VXhzb3NSV0J6VkRZVlNWOUY4WXZrc00xNW5nCkRFaGQ4VHpNY2NSMXBzVGlmejlm
+            dnp0UmdaYlNyZ0hFeG50dDJwa053S2cKLS0tIFlmazlFZ3JyOHhDd093Q1JBUHVR
+            bUR1REtPRDRwYXdDK0NON1dyaTdNQlEKMA2xjmkrnTKKownDfWewO9yzIGw4cYgq
+            dtMdHkStr/DQNuaANDw13JdMYPK3pxWL9jGHTmiQxWPpYnCleQIM3A==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-12-13T20:24:53Z"
+    mac: ENC[AES256_GCM,data:I9ENK9mA8Ss7R2JbUmYl1emKXKKO4mdtQTst6huXYu0Bp7ILPvnPR4A4BZMChl/ryy/Xcu1P/8SJvugmtMUANpaosPXqvlGIJBMxXPJFxa9NtD/bXJHp3ZgJC2Seodup4n00ZVQDJamHIyQ0Q42mndFNbxOApAqklN58I9wrHJw=,iv:unuSGvKuYRBGfpwSxkfhhU0MNs/WoGq2y1U4+o91kO8=,tag:6czxLg3MUZtzUwgXQScDpQ==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.11.0
+---
+apiVersion: v1
+kind: Secret
+metadata:
+    name: docmost-secret
+    namespace: docmost
+type: Opaque
+stringData:
+    #ENC[AES256_GCM,data:xojoO6j0fMsXi+SRl0B6uxf/yBEQJm+iMGD/c3EQ6eDcnEjQm4PEzcY9FwSbHaE=,iv:vdumdbiBLvKbiaMop9IbKtqj0l7YIJxvP0AoIYgK79Y=,tag:aScUSQye4D+ekj/a49v5nA==,type:comment]
+    app-secret: ENC[AES256_GCM,data:ika7HYsZxOosiwFIhKutFLLM2d+jWodtcptZhQSJj5HXJ6K3Tx6BHF7SkWnNCDBQJ/mnHfcLq90LN6zsuSukKCznfkcK,iv:yw6l2/fmjuAttCrWkVEmHJPvjOn8k3aEdJraHCsXNEs=,tag:CGKPh40cNAGf09WaKINg5w==,type:str]
+    postgres-password: ENC[AES256_GCM,data:qUBBWhQAhMhsI/kkAB9SGEn+4ONxVZ7t5p8=,iv:IpBH7JndmII4SIC5mgbnopwxNPlYp9IObHggf8AqM3Q=,tag:KwMS6igSiGcNusX4YrHCMg==,type:str]
+    #ENC[AES256_GCM,data:Q1A9gQ7FIkJo82VbwM8+gNUfOJBaSEYp+KUIBT3tkLZ4sk/aoyqyfT9d0wV5KGj3wK6icqfIK/+9c4iTC8GnEw==,iv:XSrqFWal9fzuZrlC2NM6WJjCEvTqvEDqE7r5RJa89QA=,tag:I30t5PzxfHINj8WA2pRpaw==,type:comment]
+    database-url: ENC[AES256_GCM,data:jNJnqgcUb8pjkkx3LC3RqKw5P26U6jMLKw07BBicCmSaohhbW9oHjWI9qFbZIUgwAUCSkefrbYRW18bImMquDoUv1y4ETdd2STydtGN8JVDDs08=,iv:ub4s4lIsiWgVbBqCucAS1C8BYwmesqXcWDVM4PUL8Rk=,tag:q2B4uOT/MTu4cx9sltUmXg==,type:str]
+sops:
+    age:
+        - recipient: age123qz4jtnncp3l87a722303xxvs7jf33melrt3m63kqp0r34304zsdfhlm4
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBwNHhzSm0vZEFQMXdsZS9E
+            VXhzb3NSV0J6VkRZVlNWOUY4WXZrc00xNW5nCkRFaGQ4VHpNY2NSMXBzVGlmejlm
+            dnp0UmdaYlNyZ0hFeG50dDJwa053S2cKLS0tIFlmazlFZ3JyOHhDd093Q1JBUHVR
+            bUR1REtPRDRwYXdDK0NON1dyaTdNQlEKMA2xjmkrnTKKownDfWewO9yzIGw4cYgq
+            dtMdHkStr/DQNuaANDw13JdMYPK3pxWL9jGHTmiQxWPpYnCleQIM3A==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-12-13T20:24:53Z"
+    mac: ENC[AES256_GCM,data:I9ENK9mA8Ss7R2JbUmYl1emKXKKO4mdtQTst6huXYu0Bp7ILPvnPR4A4BZMChl/ryy/Xcu1P/8SJvugmtMUANpaosPXqvlGIJBMxXPJFxa9NtD/bXJHp3ZgJC2Seodup4n00ZVQDJamHIyQ0Q42mndFNbxOApAqklN58I9wrHJw=,iv:unuSGvKuYRBGfpwSxkfhhU0MNs/WoGq2y1U4+o91kO8=,tag:6czxLg3MUZtzUwgXQScDpQ==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.11.0
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: docmost-data
+    namespace: docmost
+spec:
+    accessModes:
+        - ReadWriteOnce
+    storageClassName: local-path
+    resources:
+        requests:
+            storage: 10Gi
+sops:
+    age:
+        - recipient: age123qz4jtnncp3l87a722303xxvs7jf33melrt3m63kqp0r34304zsdfhlm4
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBwNHhzSm0vZEFQMXdsZS9E
+            VXhzb3NSV0J6VkRZVlNWOUY4WXZrc00xNW5nCkRFaGQ4VHpNY2NSMXBzVGlmejlm
+            dnp0UmdaYlNyZ0hFeG50dDJwa053S2cKLS0tIFlmazlFZ3JyOHhDd093Q1JBUHVR
+            bUR1REtPRDRwYXdDK0NON1dyaTdNQlEKMA2xjmkrnTKKownDfWewO9yzIGw4cYgq
+            dtMdHkStr/DQNuaANDw13JdMYPK3pxWL9jGHTmiQxWPpYnCleQIM3A==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-12-13T20:24:53Z"
+    mac: ENC[AES256_GCM,data:I9ENK9mA8Ss7R2JbUmYl1emKXKKO4mdtQTst6huXYu0Bp7ILPvnPR4A4BZMChl/ryy/Xcu1P/8SJvugmtMUANpaosPXqvlGIJBMxXPJFxa9NtD/bXJHp3ZgJC2Seodup4n00ZVQDJamHIyQ0Q42mndFNbxOApAqklN58I9wrHJw=,iv:unuSGvKuYRBGfpwSxkfhhU0MNs/WoGq2y1U4+o91kO8=,tag:6czxLg3MUZtzUwgXQScDpQ==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.11.0
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: docmost-db
+    namespace: docmost
+spec:
+    accessModes:
+        - ReadWriteOnce
+    storageClassName: local-path
+    resources:
+        requests:
+            storage: 10Gi
+sops:
+    age:
+        - recipient: age123qz4jtnncp3l87a722303xxvs7jf33melrt3m63kqp0r34304zsdfhlm4
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBwNHhzSm0vZEFQMXdsZS9E
+            VXhzb3NSV0J6VkRZVlNWOUY4WXZrc00xNW5nCkRFaGQ4VHpNY2NSMXBzVGlmejlm
+            dnp0UmdaYlNyZ0hFeG50dDJwa053S2cKLS0tIFlmazlFZ3JyOHhDd093Q1JBUHVR
+            bUR1REtPRDRwYXdDK0NON1dyaTdNQlEKMA2xjmkrnTKKownDfWewO9yzIGw4cYgq
+            dtMdHkStr/DQNuaANDw13JdMYPK3pxWL9jGHTmiQxWPpYnCleQIM3A==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-12-13T20:24:53Z"
+    mac: ENC[AES256_GCM,data:I9ENK9mA8Ss7R2JbUmYl1emKXKKO4mdtQTst6huXYu0Bp7ILPvnPR4A4BZMChl/ryy/Xcu1P/8SJvugmtMUANpaosPXqvlGIJBMxXPJFxa9NtD/bXJHp3ZgJC2Seodup4n00ZVQDJamHIyQ0Q42mndFNbxOApAqklN58I9wrHJw=,iv:unuSGvKuYRBGfpwSxkfhhU0MNs/WoGq2y1U4+o91kO8=,tag:6czxLg3MUZtzUwgXQScDpQ==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.11.0
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: docmost-redis
+    namespace: docmost
+spec:
+    accessModes:
+        - ReadWriteOnce
+    storageClassName: local-path
+    resources:
+        requests:
+            storage: 1Gi
+sops:
+    age:
+        - recipient: age123qz4jtnncp3l87a722303xxvs7jf33melrt3m63kqp0r34304zsdfhlm4
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBwNHhzSm0vZEFQMXdsZS9E
+            VXhzb3NSV0J6VkRZVlNWOUY4WXZrc00xNW5nCkRFaGQ4VHpNY2NSMXBzVGlmejlm
+            dnp0UmdaYlNyZ0hFeG50dDJwa053S2cKLS0tIFlmazlFZ3JyOHhDd093Q1JBUHVR
+            bUR1REtPRDRwYXdDK0NON1dyaTdNQlEKMA2xjmkrnTKKownDfWewO9yzIGw4cYgq
+            dtMdHkStr/DQNuaANDw13JdMYPK3pxWL9jGHTmiQxWPpYnCleQIM3A==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-12-13T20:24:53Z"
+    mac: ENC[AES256_GCM,data:I9ENK9mA8Ss7R2JbUmYl1emKXKKO4mdtQTst6huXYu0Bp7ILPvnPR4A4BZMChl/ryy/Xcu1P/8SJvugmtMUANpaosPXqvlGIJBMxXPJFxa9NtD/bXJHp3ZgJC2Seodup4n00ZVQDJamHIyQ0Q42mndFNbxOApAqklN58I9wrHJw=,iv:unuSGvKuYRBGfpwSxkfhhU0MNs/WoGq2y1U4+o91kO8=,tag:6czxLg3MUZtzUwgXQScDpQ==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.11.0
+---
+# Redis
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: redis
+    namespace: docmost
+    labels:
+        app: redis
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: redis
+    template:
+        metadata:
+            labels:
+                app: redis
+        spec:
+            nodeSelector:
+                kubernetes.io/hostname: talos-nst-2ck
+            containers:
+                - name: redis
+                  image: redis:7-alpine
+                  ports:
+                    - containerPort: 6379
+                  volumeMounts:
+                    - name: data
+                      mountPath: /data
+            volumes:
+                - name: data
+                  persistentVolumeClaim:
+                    claimName: docmost-redis
+sops:
+    age:
+        - recipient: age123qz4jtnncp3l87a722303xxvs7jf33melrt3m63kqp0r34304zsdfhlm4
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBwNHhzSm0vZEFQMXdsZS9E
+            VXhzb3NSV0J6VkRZVlNWOUY4WXZrc00xNW5nCkRFaGQ4VHpNY2NSMXBzVGlmejlm
+            dnp0UmdaYlNyZ0hFeG50dDJwa053S2cKLS0tIFlmazlFZ3JyOHhDd093Q1JBUHVR
+            bUR1REtPRDRwYXdDK0NON1dyaTdNQlEKMA2xjmkrnTKKownDfWewO9yzIGw4cYgq
+            dtMdHkStr/DQNuaANDw13JdMYPK3pxWL9jGHTmiQxWPpYnCleQIM3A==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-12-13T20:24:53Z"
+    mac: ENC[AES256_GCM,data:I9ENK9mA8Ss7R2JbUmYl1emKXKKO4mdtQTst6huXYu0Bp7ILPvnPR4A4BZMChl/ryy/Xcu1P/8SJvugmtMUANpaosPXqvlGIJBMxXPJFxa9NtD/bXJHp3ZgJC2Seodup4n00ZVQDJamHIyQ0Q42mndFNbxOApAqklN58I9wrHJw=,iv:unuSGvKuYRBGfpwSxkfhhU0MNs/WoGq2y1U4+o91kO8=,tag:6czxLg3MUZtzUwgXQScDpQ==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.11.0
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: redis
+    namespace: docmost
+spec:
+    ports:
+        - port: 6379
+          targetPort: 6379
+    selector:
+        app: redis
+sops:
+    age:
+        - recipient: age123qz4jtnncp3l87a722303xxvs7jf33melrt3m63kqp0r34304zsdfhlm4
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBwNHhzSm0vZEFQMXdsZS9E
+            VXhzb3NSV0J6VkRZVlNWOUY4WXZrc00xNW5nCkRFaGQ4VHpNY2NSMXBzVGlmejlm
+            dnp0UmdaYlNyZ0hFeG50dDJwa053S2cKLS0tIFlmazlFZ3JyOHhDd093Q1JBUHVR
+            bUR1REtPRDRwYXdDK0NON1dyaTdNQlEKMA2xjmkrnTKKownDfWewO9yzIGw4cYgq
+            dtMdHkStr/DQNuaANDw13JdMYPK3pxWL9jGHTmiQxWPpYnCleQIM3A==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-12-13T20:24:53Z"
+    mac: ENC[AES256_GCM,data:I9ENK9mA8Ss7R2JbUmYl1emKXKKO4mdtQTst6huXYu0Bp7ILPvnPR4A4BZMChl/ryy/Xcu1P/8SJvugmtMUANpaosPXqvlGIJBMxXPJFxa9NtD/bXJHp3ZgJC2Seodup4n00ZVQDJamHIyQ0Q42mndFNbxOApAqklN58I9wrHJw=,iv:unuSGvKuYRBGfpwSxkfhhU0MNs/WoGq2y1U4+o91kO8=,tag:6czxLg3MUZtzUwgXQScDpQ==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.11.0
+---
+# Postgres
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: postgres
+    namespace: docmost
+    labels:
+        app: postgres
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: postgres
+    template:
+        metadata:
+            labels:
+                app: postgres
+        spec:
+            nodeSelector:
+                kubernetes.io/hostname: talos-nst-2ck
+            containers:
+                - name: postgres
+                  image: postgres:16-alpine
+                  env:
+                    - name: POSTGRES_DB
+                      value: docmost
+                    - name: POSTGRES_USER
+                      value: docmost
+                    - name: POSTGRES_PASSWORD
+                      valueFrom:
+                        secretKeyRef:
+                            name: docmost-secret
+                            key: postgres-password
+                  ports:
+                    - containerPort: 5432
+                  volumeMounts:
+                    - name: data
+                      mountPath: /var/lib/postgresql/data
+            volumes:
+                - name: data
+                  persistentVolumeClaim:
+                    claimName: docmost-db
+sops:
+    age:
+        - recipient: age123qz4jtnncp3l87a722303xxvs7jf33melrt3m63kqp0r34304zsdfhlm4
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBwNHhzSm0vZEFQMXdsZS9E
+            VXhzb3NSV0J6VkRZVlNWOUY4WXZrc00xNW5nCkRFaGQ4VHpNY2NSMXBzVGlmejlm
+            dnp0UmdaYlNyZ0hFeG50dDJwa053S2cKLS0tIFlmazlFZ3JyOHhDd093Q1JBUHVR
+            bUR1REtPRDRwYXdDK0NON1dyaTdNQlEKMA2xjmkrnTKKownDfWewO9yzIGw4cYgq
+            dtMdHkStr/DQNuaANDw13JdMYPK3pxWL9jGHTmiQxWPpYnCleQIM3A==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-12-13T20:24:53Z"
+    mac: ENC[AES256_GCM,data:I9ENK9mA8Ss7R2JbUmYl1emKXKKO4mdtQTst6huXYu0Bp7ILPvnPR4A4BZMChl/ryy/Xcu1P/8SJvugmtMUANpaosPXqvlGIJBMxXPJFxa9NtD/bXJHp3ZgJC2Seodup4n00ZVQDJamHIyQ0Q42mndFNbxOApAqklN58I9wrHJw=,iv:unuSGvKuYRBGfpwSxkfhhU0MNs/WoGq2y1U4+o91kO8=,tag:6czxLg3MUZtzUwgXQScDpQ==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.11.0
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: postgres
+    namespace: docmost
+spec:
+    ports:
+        - port: 5432
+          targetPort: 5432
+    selector:
+        app: postgres
+sops:
+    age:
+        - recipient: age123qz4jtnncp3l87a722303xxvs7jf33melrt3m63kqp0r34304zsdfhlm4
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBwNHhzSm0vZEFQMXdsZS9E
+            VXhzb3NSV0J6VkRZVlNWOUY4WXZrc00xNW5nCkRFaGQ4VHpNY2NSMXBzVGlmejlm
+            dnp0UmdaYlNyZ0hFeG50dDJwa053S2cKLS0tIFlmazlFZ3JyOHhDd093Q1JBUHVR
+            bUR1REtPRDRwYXdDK0NON1dyaTdNQlEKMA2xjmkrnTKKownDfWewO9yzIGw4cYgq
+            dtMdHkStr/DQNuaANDw13JdMYPK3pxWL9jGHTmiQxWPpYnCleQIM3A==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-12-13T20:24:53Z"
+    mac: ENC[AES256_GCM,data:I9ENK9mA8Ss7R2JbUmYl1emKXKKO4mdtQTst6huXYu0Bp7ILPvnPR4A4BZMChl/ryy/Xcu1P/8SJvugmtMUANpaosPXqvlGIJBMxXPJFxa9NtD/bXJHp3ZgJC2Seodup4n00ZVQDJamHIyQ0Q42mndFNbxOApAqklN58I9wrHJw=,iv:unuSGvKuYRBGfpwSxkfhhU0MNs/WoGq2y1U4+o91kO8=,tag:6czxLg3MUZtzUwgXQScDpQ==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.11.0
+---
+# Docmost
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: docmost
+    namespace: docmost
+    labels:
+        app: docmost
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: docmost
+    template:
+        metadata:
+            labels:
+                app: docmost
+        spec:
+            nodeSelector:
+                kubernetes.io/hostname: talos-nst-2ck
+            containers:
+                - name: docmost
+                  image: docmost/docmost:latest
+                  env:
+                    - name: APP_URL
+                      value: https://docmost.eduuh.home
+                    - name: APP_SECRET
+                      valueFrom:
+                        secretKeyRef:
+                            name: docmost-secret
+                            key: app-secret
+                    - name: DATABASE_URL
+                      valueFrom:
+                        secretKeyRef:
+                            name: docmost-secret
+                            key: database-url
+                    - name: REDIS_URL
+                      value: redis://redis:6379
+                  ports:
+                    - containerPort: 3000
+                      name: http
+                  volumeMounts:
+                    - name: data
+                      mountPath: /app/data/storage
+            volumes:
+                - name: data
+                  persistentVolumeClaim:
+                    claimName: docmost-data
+sops:
+    age:
+        - recipient: age123qz4jtnncp3l87a722303xxvs7jf33melrt3m63kqp0r34304zsdfhlm4
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBwNHhzSm0vZEFQMXdsZS9E
+            VXhzb3NSV0J6VkRZVlNWOUY4WXZrc00xNW5nCkRFaGQ4VHpNY2NSMXBzVGlmejlm
+            dnp0UmdaYlNyZ0hFeG50dDJwa053S2cKLS0tIFlmazlFZ3JyOHhDd093Q1JBUHVR
+            bUR1REtPRDRwYXdDK0NON1dyaTdNQlEKMA2xjmkrnTKKownDfWewO9yzIGw4cYgq
+            dtMdHkStr/DQNuaANDw13JdMYPK3pxWL9jGHTmiQxWPpYnCleQIM3A==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-12-13T20:24:53Z"
+    mac: ENC[AES256_GCM,data:I9ENK9mA8Ss7R2JbUmYl1emKXKKO4mdtQTst6huXYu0Bp7ILPvnPR4A4BZMChl/ryy/Xcu1P/8SJvugmtMUANpaosPXqvlGIJBMxXPJFxa9NtD/bXJHp3ZgJC2Seodup4n00ZVQDJamHIyQ0Q42mndFNbxOApAqklN58I9wrHJw=,iv:unuSGvKuYRBGfpwSxkfhhU0MNs/WoGq2y1U4+o91kO8=,tag:6czxLg3MUZtzUwgXQScDpQ==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.11.0
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: docmost
+    namespace: docmost
+spec:
+    ports:
+        - port: 80
+          targetPort: http
+          protocol: TCP
+          name: http
+    selector:
+        app: docmost
+sops:
+    age:
+        - recipient: age123qz4jtnncp3l87a722303xxvs7jf33melrt3m63kqp0r34304zsdfhlm4
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBwNHhzSm0vZEFQMXdsZS9E
+            VXhzb3NSV0J6VkRZVlNWOUY4WXZrc00xNW5nCkRFaGQ4VHpNY2NSMXBzVGlmejlm
+            dnp0UmdaYlNyZ0hFeG50dDJwa053S2cKLS0tIFlmazlFZ3JyOHhDd093Q1JBUHVR
+            bUR1REtPRDRwYXdDK0NON1dyaTdNQlEKMA2xjmkrnTKKownDfWewO9yzIGw4cYgq
+            dtMdHkStr/DQNuaANDw13JdMYPK3pxWL9jGHTmiQxWPpYnCleQIM3A==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-12-13T20:24:53Z"
+    mac: ENC[AES256_GCM,data:I9ENK9mA8Ss7R2JbUmYl1emKXKKO4mdtQTst6huXYu0Bp7ILPvnPR4A4BZMChl/ryy/Xcu1P/8SJvugmtMUANpaosPXqvlGIJBMxXPJFxa9NtD/bXJHp3ZgJC2Seodup4n00ZVQDJamHIyQ0Q42mndFNbxOApAqklN58I9wrHJw=,iv:unuSGvKuYRBGfpwSxkfhhU0MNs/WoGq2y1U4+o91kO8=,tag:6czxLg3MUZtzUwgXQScDpQ==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.11.0
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: docmost
+    namespace: docmost
+    annotations:
+        cert-manager.io/cluster-issuer: ca-issuer
+spec:
+    ingressClassName: nginx
+    tls:
+        - hosts:
+            - docmost.eduuh.home
+          secretName: docmost-tls
+    rules:
+        - host: docmost.eduuh.home
+          http:
+            paths:
+                - path: /
+                  pathType: Prefix
+                  backend:
+                    service:
+                        name: docmost
+                        port:
+                            name: http
+sops:
+    age:
+        - recipient: age123qz4jtnncp3l87a722303xxvs7jf33melrt3m63kqp0r34304zsdfhlm4
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBwNHhzSm0vZEFQMXdsZS9E
+            VXhzb3NSV0J6VkRZVlNWOUY4WXZrc00xNW5nCkRFaGQ4VHpNY2NSMXBzVGlmejlm
+            dnp0UmdaYlNyZ0hFeG50dDJwa053S2cKLS0tIFlmazlFZ3JyOHhDd093Q1JBUHVR
+            bUR1REtPRDRwYXdDK0NON1dyaTdNQlEKMA2xjmkrnTKKownDfWewO9yzIGw4cYgq
+            dtMdHkStr/DQNuaANDw13JdMYPK3pxWL9jGHTmiQxWPpYnCleQIM3A==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-12-13T20:24:53Z"
+    mac: ENC[AES256_GCM,data:I9ENK9mA8Ss7R2JbUmYl1emKXKKO4mdtQTst6huXYu0Bp7ILPvnPR4A4BZMChl/ryy/Xcu1P/8SJvugmtMUANpaosPXqvlGIJBMxXPJFxa9NtD/bXJHp3ZgJC2Seodup4n00ZVQDJamHIyQ0Q42mndFNbxOApAqklN58I9wrHJw=,iv:unuSGvKuYRBGfpwSxkfhhU0MNs/WoGq2y1U4+o91kO8=,tag:6czxLg3MUZtzUwgXQScDpQ==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.11.0

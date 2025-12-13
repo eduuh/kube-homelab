@@ -36,6 +36,29 @@ pages:
                 url: https://syncthing.eduuh.home
                 icon: si:syncthing
                 allow-insecure: true
+              - title: Jellyfin
+                url: https://jellyfin.eduuh.home
+                icon: si:jellyfin
+                allow-insecure: true
+              - title: Plex
+                url: https://plex.eduuh.home
+                icon: si:plex
+                allow-insecure: true
+              - title: Overseerr
+                url: https://overseerr.eduuh.home
+                icon: si:overseerr
+                allow-insecure: true
+              - title: Radarr
+                url: https://radarr.eduuh.home
+                icon: si:radarr
+                allow-insecure: true
+              - title: qBittorrent
+                url: https://qbittorrent.eduuh.home
+                icon: si:qbittorrent
+                allow-insecure: true
+              - title: Docmost
+                url: https://docmost.eduuh.home
+                allow-insecure: true
   - name: Markets
     columns:
       - size: small

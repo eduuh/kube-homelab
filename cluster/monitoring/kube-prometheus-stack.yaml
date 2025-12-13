@@ -40,9 +40,9 @@ spec:
     prometheus:
       prometheusSpec:
         securityContext:
-          fsGroup: 2000
-          runAsNonRoot: true
-          runAsUser: 1000
+          fsGroup: 0
+          runAsNonRoot: false
+          runAsUser: 0
         storageSpec:
           volumeClaimTemplate:
             spec:
